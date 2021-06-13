@@ -6,16 +6,18 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{Component} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
+  Button,
   Text,
   useColorScheme,
   View,
+  Platform,
 } from 'react-native';
 
 import {
@@ -26,87 +28,97 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+ 
+export default class App extends Component {  
+  constructor(props)
+  {
+    super(props);
+    this.state = { message: "message"} 
+    console.log("constructor");
+  }
+  static getDerivedStateFromProps(props, state)
+   {
+    console.log("getDerivedStateFromProps");
+    return {
+      message: "message",
+    }
+  }
+  componentDidMount()
+  {
+    console.log("componentDidMount");
+  }  
+  render() {  
+    console.log("render");
+    return (  
+        <View style={{alignItems: 'center'}}>  
+          <ChildClass name= 'Zain' />  
+          <Text>{this.state.message}</Text>
+          <Button  title="Press me" onPress={() =>this.setState({ message: "Hello new Message"}) }   />
+          <ChangeName/>
+        </View>  
+    );  
+  }
+  shouldComponentUpdate()
+  {
+      console.log("shouldComponentUpdate");
+      return true;
+  }
+  getSnapshotBeforeUpdate(prevProps, prevState)
+  {
+    console.log("getSnapshotBeforeUpdate");
+     return null
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("componentDidUpdate");
+  }
+  componentWillUnmount(){
+    console.log("componentWillUnmount");
+  }
+ static getDerivedStateFromError(error) {
+    console.log(`Error log from getDerivedStateFromError: ${error}`);
+    return { hasError: false };
+  }
+  componentDidCatch(error, info) {
+    console.log(`Error log from componentDidCatch: ${error}`);
+    console.log(info);
+  }
+}
+class ChildClass extends Component {  
+  render() {  
+    return (  
+        <View style={{alignItems: 'center'}}>  
+          <Text style={styles.welcome}>Hello {this.props.name}!</Text> 
+        </View>  
+    );  
+  }  
+}    
+const styles = StyleSheet.create({  
+   welcome: {  
+    fontSize: 30,  
+  }  
+});  
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+class ChangeName extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "zain"
+    };
+  }
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  componentDidMount() {
+        console.log("componentDidMount");
+  }
+  componentDidUpdate() {
+        console.log("componentDidMount");
+  }
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+  render() {
+    return (
+      <View>
+        <Text>My name is  {this.state.name} </Text>
+        <Button  title="Press to change name " onPress={() =>this.setState({ name: "zain ul Abidin"}) }   />
+      </View>
+    );
+  }
+}
