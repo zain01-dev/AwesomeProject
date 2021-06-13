@@ -1,4 +1,4 @@
-package com.awesomeproject;
+package com.functioncomponent;
 
 import com.facebook.react.ReactActivity;
 
