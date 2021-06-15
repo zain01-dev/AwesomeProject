@@ -27,14 +27,26 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as countActions from './actions/counts';
+import countReducer from './reducers/countReducer';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import allReducers from './reducers/index.js';
+import Counter from './components/counter';
+import CounterPlus from './components/counterPlus';
+const store = createStore(allReducers);
 
 const App = () => {
- const greeting = 'Hello Function Component!';
+const greeting = 'Hello Function Component!';
  return(<View>
-       <Headline value={greeting} />
-       <ChangeName/>
+      <Provider store={store}>
+       {/* <Headline value={greeting} />
+       <ChangeName/>  */}
+       <Counter/>
+       <CounterPlus/>
+      </Provider>
  </View>
  );
 };

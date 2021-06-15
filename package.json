@@ -11,9 +11,12 @@
     "windows": "react-native run-windows"
   },
   "dependencies": {
+    "native-base": "^2.15.2",
     "react": "17.0.1",
     "react-native": "0.64.2",
-    "react-native-windows": "^0.64.0-0"
+    "react-native-windows": "^0.64.0-0",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
