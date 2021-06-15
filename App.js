@@ -28,8 +28,29 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
- 
-export default class App extends Component {  
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as countActions from './actions/counts';
+import countReducer from './reducers/countReducer';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import Counter from './components/counter';
+import CounterPlus from './components/counterPlus';
+import allReducers from './reducers/index.js';
+const store = createStore(allReducers);
+
+export default class App extends Component{
+  render(){
+    return(
+      <Provider store= {store}>
+        <Counter />
+        <CounterPlus/>
+      </Provider>
+    );
+  }
+}
+
+ class LifeCycle extends Component {  
   constructor(props)
   {
     super(props);
@@ -50,7 +71,7 @@ export default class App extends Component {
   render() {  
     console.log("render");
     return (  
-        <View style={{alignItems: 'center'}}>  
+        <View style={{alignItems: 'center'}}> 
           <ChildClass name= 'Zain' />  
           <Text>{this.state.message}</Text>
           <Button  title="Press me" onPress={() =>this.setState({ message: "Hello new Message"}) }   />
@@ -114,9 +135,12 @@ class ChangeName extends Component {
   }
 
   render() {
+    console.log(store.getState())
     return (
       <View>
-        <Text>My name is  {this.state.name} </Text>
+        <Text>My name is  {this.state.name} </Text>   
+        <Text>My name is  </Text>   
+              
         <Button  title="Press to change name " onPress={() =>this.setState({ name: "zain ul Abidin"}) }   />
       </View>
     );
