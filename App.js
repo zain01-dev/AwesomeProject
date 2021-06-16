@@ -42,8 +42,8 @@ const App = () => {
 const greeting = 'Hello Function Component!';
  return(<View>
       <Provider store={store}>
-       {/* <Headline value={greeting} />
-       <ChangeName/>  */}
+       <Headline value={greeting} />
+       <ChangeName/> 
        <Counter/>
        <CounterPlus/>
       </Provider>
