@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Content, Text, Card, Header, Body, Button, Title, CardItem } from 'native-base';
+import { Container, Content, Text, Card, Header, Body, Title, CardItem } from 'native-base';
 import { increment, decrement } from '../actions/index.js';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {StyleSheet,View,FlatList,ActivityIndicator} from 'react-native';
+import {StyleSheet,Button,View,FlatList,ActivityIndicator} from 'react-native';
 
 class Counter extends Component{
     constructor(){
@@ -34,7 +34,7 @@ console.log(this.props.count);
     return(
       <Container>
        
-         <Text>Scroll the Below list from Server (Fetch)</Text>
+         <Text style = {Mystyles.titleText}>Scroll the Below list from Server (Fetch)</Text>
          <Text></Text>
           <View style = {styles.container} >
           <FlatList 
@@ -42,11 +42,7 @@ console.log(this.props.count);
             renderItem={({item})=><Text>{item.title}</Text>}
           />
           </View>
-           <Header>
-          <Body>
-            <Title>Counter</Title>
-          </Body>
-        </Header>
+          <Text style={Mystyles.titleText}>Counter </Text>
         <Content padder>
           <Card>
             <CardItem>
@@ -55,12 +51,9 @@ console.log(this.props.count);
               </Text>
             </CardItem>
           </Card>
-          <Button dark bordered onPress= {() => this.props.increment()}>
-            <Text>Increment</Text>
-          </Button>
-          <Button dark bordered onPress= {() => this.props.decrement()}>
-            <Text>Decrement</Text>
-          </Button>
+          <Button  title="Increment" onPress={() => this.props.increment()}   />
+          <Text>  </Text>
+          <Button  title="Decrement" onPress={() => this.props.decrement()}   />
         </Content>
       </Container>
     );
@@ -74,6 +67,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor:'#F5FCFF'
     }
+});
+const Mystyles = StyleSheet.create({
+  baseText: {
+    fontFamily: "Cochin"
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: "bold"
+  }
 });
 function mapStateToProps(state){
   return{

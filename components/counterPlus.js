@@ -40,11 +40,7 @@ render(){
     console.log("Plus"+this.props.count+1);
     return(
       <Container>
-        <Header>
-          <Body>
-            <Title>Counter +</Title>
-          </Body>
-        </Header>
+      <Text style={Textstyles.titleText}>Counter + </Text>
         <Content padder>
           <Card>
             <CardItem>
@@ -54,8 +50,7 @@ render(){
             </CardItem>
           </Card>
         </Content>
-        <Text>Scroll below Grid from server (axios)</Text>
-        <Text>      </Text>
+        <Text style ={Textstyles.titleText}>Scroll below Grid from server (axios)</Text>
          <SafeAreaView style={Mystyles.container}>
         <FlatList 
             data = {this.state.axiosData}
@@ -92,6 +87,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor:'#F5FCFF'
     }
+});
+const Textstyles = StyleSheet.create({
+  baseText: {
+    fontFamily: "Cochin"
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: "bold"
+  }
 });
 function mapStateToProps(state){
   return{
