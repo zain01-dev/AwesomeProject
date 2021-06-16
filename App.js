@@ -65,7 +65,7 @@ function ChangeName() {
   return (
     <View>
       <Text>My name is {name} </Text>
-      <Button  title="Change Name by press me" onPress={() =>{setName("zaini")} }   />
+      <Button  title="Change Name by press me" onPress={() =>{setName("zain ul Abidin")} }   />
     </View>
   );
 }
