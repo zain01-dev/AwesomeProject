@@ -43,6 +43,7 @@ export default class App extends Component{
   render(){
     return(
       <Provider store= {store}>
+      <LifeCycle/>
         <Counter />
         <CounterPlus/>
       </Provider>
@@ -138,9 +139,7 @@ class ChangeName extends Component {
     console.log(store.getState())
     return (
       <View>
-        <Text>My name is  {this.state.name} </Text>   
-        <Text>My name is  </Text>   
-              
+        <Text>My name is  {this.state.name} </Text>             
         <Button  title="Press to change name " onPress={() =>this.setState({ name: "zain ul Abidin"}) }   />
       </View>
     );
